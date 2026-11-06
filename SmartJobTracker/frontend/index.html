@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Track job applications, interviews and placement progress in one place." />
+  <title>CareerTrack — Job Application Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">C</span><span>CareerTrack</span></a>
+    <p class="nav-label">WORKSPACE</p>
+    <a class="nav-item active" href="#overview">▦ <span>Overview</span></a>
+    <a class="nav-item" href="#applications">▤ <span>Applications</span></a>
+    <div class="sidebar-bottom"><div class="profile-avatar">A</div><div><strong>My Workspace</strong><small>Placement dashboard</small></div></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><p class="eyebrow">YOUR CAREER, ORGANIZED</p><h1>Job application overview</h1></div>
+      <button class="primary-btn" id="openModalBtn">＋ Add application</button>
+    </header>
+
+    <section class="welcome">
+      <div><p class="eyebrow light">CAREER PROGRESS</p><h2>Keep moving forward.</h2><p>Every application is a step closer to your next opportunity.</p></div>
+      <div class="welcome-art">↗</div>
+    </section>
+
+    <section class="stats-grid" id="overview">
+      <article class="stat-card"><div class="stat-top"><span>Total applications</span><span class="stat-icon purple">▤</span></div><strong id="totalCount">0</strong><small>All tracked opportunities</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Interviews</span><span class="stat-icon blue">◎</span></div><strong id="interviewCount">0</strong><small>Interview stage</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Offers received</span><span class="stat-icon green">✓</span></div><strong id="selectedCount">0</strong><small>Selected applications</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Awaiting response</span><span class="stat-icon orange">◷</span></div><strong id="pendingCount">0</strong><small>Applied or in interview</small></article>
+    </section>
+
+    <section class="panel" id="applications">
+      <div class="panel-heading"><div><h3>Applications</h3><p>Keep an eye on every opportunity.</p></div><span class="record-count" id="recordCount">0 records</span></div>
+      <div class="toolbar"><input id="searchInput" type="search" placeholder="⌕  Search company or role..." /><select id="statusFilter"><option value="">All statuses</option><option>Applied</option><option>Interview</option><option>Selected</option><option>Rejected</option></select></div>
+      <div class="table-wrap"><table><thead><tr><th>COMPANY & ROLE</th><th>LOCATION</th><th>DATE APPLIED</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="jobsTable"><tr><td colspan="5" class="empty">Loading applications…</td></tr></tbody></table></div>
+      <p class="footnote">Your application list is stored in your connected database.</p>
+    </section>
+    <footer>CareerTrack <span>Built to make your job search more organized.</span></footer>
+  </main>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <form class="modal" id="jobForm">
+      <div class="modal-heading"><div><p class="eyebrow">NEW OPPORTUNITY</p><h2 id="modalTitle">Add application</h2></div><button type="button" class="close-btn" id="closeModalBtn">×</button></div>
+      <input type="hidden" id="jobId" />
+      <label>Company name *<input id="company" required maxlength="100" placeholder="e.g. Infosys" /></label>
+      <label>Job role *<input id="role" required maxlength="100" placeholder="e.g. Software Engineer" /></label>
+      <div class="form-row"><label>Location<input id="location" placeholder="e.g. Hyderabad" /></label><label>Job type<select id="jobType"><option>Full-time</option><option>Internship</option><option>Part-time</option><option>Remote</option></select></label></div>
+      <div class="form-row"><label>Date applied<input id="appliedDate" type="date" required /></label><label>Status<select id="status"><option>Applied</option><option>Interview</option><option>Selected</option><option>Rejected</option></select></label></div>
+      <label>Notes<textarea id="notes" rows="3" placeholder="Interview date, contact person, or next steps…"></textarea></label>
+      <p class="form-error" id="formError"></p>
+      <div class="modal-actions"><button type="button" class="secondary-btn" id="cancelBtn">Cancel</button><button class="primary-btn" type="submit">Save application</button></div>
+    </form>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
